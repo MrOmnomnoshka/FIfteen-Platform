@@ -264,21 +264,24 @@ def game_intro():
     screen.fill(BLACK)
     win_font = pygame.font.SysFont('Agency FB', 50)
 
-    phrases = (win_font.render("Hello friend!", True, WHITE),
-               win_font.render("This Game is very simple.", True, WHITE),
-               win_font.render("You have to play for SUPER NINJA WARRIOR.", True, WHITE),
-               win_font.render("Whose goal is to find all the treasures.", True, WHITE),
-               win_font.render("In a strange and changeable world.", True, WHITE),
-               win_font.render("Which YOU also control!", True, WHITE),
-               win_font.render("Character and Level control: arrows.", True, WHITE),
-               win_font.render("Change mode: space.", True, WHITE))
+    phrases = (win_font.render("Hello, friend!", True, WHITE),
+               win_font.render("This game is very simple:", True, WHITE),
+               win_font.render("you will play as a SUPER NINJA WARRIOR,", True, WHITE),
+               win_font.render("whose goal is to find all the treasures", True, WHITE),
+               win_font.render("in a strange and a changeable world,", True, WHITE),
+               win_font.render("that YOU also can control!", True, WHITE),
+               win_font.render("", True, WHITE),
+               win_font.render("    Character and Fifteen control: 'arrows'", True, WHITE),
+               win_font.render("    To change a mode: 'space'", True, WHITE))
 
-    for phrase in phrases:
-        pop_sound.play()
+    for i, phrase in enumerate(phrases):
+        # Не играть музыку на пустой строке
+        if i != len(phrases) - 1 - 2:
+            pop_sound.play()
         screen.blit(phrase, (300, 100 + phrases.index(phrase) * 60))
         pygame.display.flip()
         for i in range(800):
-            pygame.time.delay(2)
+            pygame.time.delay(3)
             pygame.event.get()
 
     intro = True
